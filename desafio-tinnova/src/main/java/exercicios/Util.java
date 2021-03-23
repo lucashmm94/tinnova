@@ -30,21 +30,22 @@ public class Util {
 		int aux;
 		boolean controle;
 
+		//Pecorre o vetor
 		for (int i = 0; i < vetor.length; ++i) {
-			controle = true;
+			boolean isOrdenado = true;
+			
+			//Comparar se o valor é maior que o proximo
 			for (int j = 0; j < (vetor.length - 1); ++j) {
 
 				if (vetor[j] > vetor[j + 1]) {
 					aux = vetor[j];
 					vetor[j] = vetor[j + 1];
 					vetor[j + 1] = aux;
-					controle = false;
+					isOrdenado = false;
 				}
 			}
-			if (controle) {
+			if (isOrdenado) 
 				break;
-			}
-
 		}
 
 		System.out.println("Ordenação dos vetores:");
