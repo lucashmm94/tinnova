@@ -38,9 +38,10 @@ public class Veiculo implements Serializable {
 	@Column(name = "criado", nullable = false)
 	private LocalDateTime criado;
 	
-	@Column(name = "atualizado",nullable = false)
+	@Column(name = "atualizado",nullable = true)
 	private LocalDateTime atualizado;
 	
+	public Veiculo() {}
 
 	public Veiculo(Long id, String nome, String descricao, String marca, Integer ano, Boolean isVendido) {
 		this.id = id;

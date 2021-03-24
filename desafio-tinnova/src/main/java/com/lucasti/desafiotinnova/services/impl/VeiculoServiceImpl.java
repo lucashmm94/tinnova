@@ -1,5 +1,6 @@
 package com.lucasti.desafiotinnova.services.impl;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,30 +18,31 @@ public class VeiculoServiceImpl implements VeiculoService{
 
 	@Override
 	public List<Veiculo> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		return repository.findAll();
 	}
 
 	@Override
 	public Veiculo findById(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+		return repository.findById(id).get();
 	}
 
 	@Override
 	public Veiculo save(Veiculo usuario) {
+		usuario.setCriado(LocalDateTime.now());
 		return repository.save(usuario);
 	}
 
 	@Override
-	public Veiculo update(Veiculo usuario, Long id) {
-		// TODO Auto-generated method stub
-		return null;
+	public Veiculo update(Veiculo veiculo, Long id) {
+		Veiculo veiculoBanco = findById(id);
+		veiculoBanco.setId(id);
+		return save(veiculoBanco);
+		
 	}
 
 	@Override
 	public void deleteById(Long id) {
-		// TODO Auto-generated method stub
+		repository.deleteById(id);
 		
 	}
 
