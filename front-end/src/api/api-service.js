@@ -17,7 +17,7 @@ const findAll = async () => {
   return response.data;
 }
 
-const deleteById = async ({id}) => {
+const deleteById = async (id) => {
   const response = await axios.delete(`${baseUrl}/${id}`);
   return response.data;
 }

@@ -20,7 +20,9 @@ export default function Search() {
 
 
   const handleDelete = (id) => {
-    api.deleteById(id);
+    api.deleteById(id).then(response =>{
+      listCars();
+    }).catch(erro=>console.error(erro))
   }
 
   const handleEdit = (id) => {
