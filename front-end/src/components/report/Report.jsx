@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import * as api from '../../api/api-service'
+import './index.css'
 
 const Report = () => {
 
@@ -49,7 +50,7 @@ const Report = () => {
   return (
     <div className="container">
 
-      <div className="row">
+      <div className="card horizontal row">
         <div className="col s3">
           Veículos não vendidos: {dadosVeiculos &&
             dadosVeiculos.filter((car => !car.isVendido)).reduce((accumulator, current) => {
