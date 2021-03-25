@@ -136,10 +136,13 @@ const Edit = ({ match }) => {
           </label>
         </div>
         <div className="input-field col s4">
-          <select onChange={handleChangeVendido} id="isVendido" >
-            <option value="false" defaultValue>Não</option>
-            <option value="true">Sim</option>
-          </select>
+          {isVendido != ''&&
+            <select onChange={handleChangeVendido} id="isVendido" >
+              <option value="{isVendido}">{isVendido?'Sim':'Não'}</option>
+              <option value="false">Não</option>
+              <option value="true">Sim</option>
+            </select>
+          }
           <label htmlFor="isVendido" className="active">
             Vendido
           </label>

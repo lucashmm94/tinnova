@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import * as api from '../../api/api-service';
 import { useHistory } from 'react-router-dom';
+import M from "materialize-css";
 
 
 export default function Search() {
@@ -21,6 +22,7 @@ export default function Search() {
 
   const handleDelete = (id) => {
     api.deleteById(id).then(response =>{
+      showMessageDelete();
       listCars();
     }).catch(erro=>console.error(erro))
   }
@@ -31,6 +33,10 @@ export default function Search() {
 
   const moveRouterCadastro = () =>{
     history.push(`/cadastrar`);
+  }
+
+  const showMessageDelete = () => {
+    M.toast({ html: 'Veículo removido', classes: 'rounded' });
   }
 
   return (

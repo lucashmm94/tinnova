@@ -38,8 +38,8 @@ const Register = () => {
 
   }
 
-  const handleSave =  () => {
-    api.saveCar(
+  const handleSave = async () => {
+   await api.saveCar(
       {
         nome,
         marca,
