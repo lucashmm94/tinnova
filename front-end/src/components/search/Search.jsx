@@ -29,10 +29,16 @@ export default function Search() {
     history.push(`/editar/${id}`);
   }
 
+  const moveRouterCadastro = () =>{
+    history.push(`/cadastrar`);
+  }
 
   return (
     <div className="container">
-      <h2 className="center">Pesquisar</h2>
+      <div>
+        <h2 className="center">Pesquisar</h2>
+        <button className="smallwaves-effect green btn right" onClick={moveRouterCadastro}>Novo</button>
+      </div>
       <div className="row">
         <table className="responsive-table">
           <thead>
@@ -56,7 +62,7 @@ export default function Search() {
                   <td>{item.ano}</td>
                   <td>
                     <button className="smallwaves-effect red btn" onClick={() => handleDelete(item.id)} ><i className="fa fa-minus-circle"></i></button>
-                    <button className="smallwaves-effect yellow-light btn" onClick={() => handleEdit(item.id)} ><i className="fa fa-edit"></i></button>
+                    <button className="smallwaves-effect blue-light btn" onClick={() => handleEdit(item.id)} ><i className="fa fa-edit"></i></button>
                   </td>
                 </tr>
               )
