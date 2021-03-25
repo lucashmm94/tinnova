@@ -60,7 +60,7 @@ const Register = () => {
   }
 
   return (
-    <>
+    <div className="container">
       <h2 className="center">Cadastro</h2>
       <div className="row">
         <div className="input-field col s4">
@@ -131,7 +131,7 @@ const Register = () => {
 
 
 
-    </>
+    </div>
   )
 }
 export default Register
