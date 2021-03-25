@@ -75,7 +75,7 @@ const Edit = ({ match }) => {
   }
 
   return (
-    <>
+    <div className="container">
       <h2 className="center">Editar</h2>
       <div className="row">
         <div className="input-field col s4">
@@ -152,7 +152,7 @@ const Edit = ({ match }) => {
 
 
 
-    </>
+    </div>
 
   )
 }
