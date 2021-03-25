@@ -10,9 +10,9 @@ export default function Search() {
   const [dataSearch, setDataSearch] = useState([]);
 
   const listCars = async () => {
-    api.findAll().then((response)=>{
+    api.findAll().then((response) => {
       setDataSearch(response)
-    }).catch(erro=>console.error(erro))
+    }).catch(erro => console.error(erro))
   }
 
   useEffect(() => {
@@ -21,17 +21,17 @@ export default function Search() {
 
 
   const handleDelete = (id) => {
-    api.deleteById(id).then(response =>{
+    api.deleteById(id).then(response => {
       showMessageDelete();
       listCars();
-    }).catch(erro=>console.error(erro))
+    }).catch(erro => console.error(erro))
   }
 
   const handleEdit = (id) => {
     history.push(`/editar/${id}`);
   }
 
-  const moveRouterCadastro = () =>{
+  const moveRouterCadastro = () => {
     history.push(`/cadastrar`);
   }
 

@@ -93,15 +93,11 @@ const Edit = ({ match }) => {
         <div className="input-field col s4">
           {marca &&
             <select onChange={handleChangeMarca} id="marca" >
-              <option value={marca}>{marca}</option>
-              <option value="Audi" >Audi</option>
-              <option value="BMW">BMW 2</option>
+              <option value={marca} defaultValue>{marca}</option>
               <option value="Chevrolet">Chevrolet</option>
               <option value="Fiat">Fiat</option>
               <option value="Ford">Ford</option>
               <option value="Honda">Honda</option>
-              <option value="Renault">Renault</option>
-              <option value="Toyota">Toyota</option>
               <option value="Volkswagen">Volkswagen</option>
             </select>
           }
@@ -136,13 +132,13 @@ const Edit = ({ match }) => {
           </label>
         </div>
         <div className="input-field col s4">
-          {isVendido != ''&&
-            <select onChange={handleChangeVendido} id="isVendido" >
-              <option value="{isVendido}">{isVendido?'Sim':'Não'}</option>
-              <option value="false">Não</option>
-              <option value="true">Sim</option>
-            </select>
-          }
+
+          <select onChange={handleChangeVendido} id="isVendido" >
+            <option value="{isVendido}">{isVendido ? 'Sim' : 'Não'}</option>
+            <option value="false">Não</option>
+            <option value="true">Sim</option>
+          </select>
+
           <label htmlFor="isVendido" className="active">
             Vendido
           </label>

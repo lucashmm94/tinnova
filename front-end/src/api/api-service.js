@@ -2,7 +2,7 @@ import axios from 'axios';
 
 axios.defaults.headers['Content-Type'] ='application/json;charset=utf-8';
 axios.defaults.headers['Access-Control-Allow-Origin'] = '*';
-const baseUrl = 'http://localhost:8080/veiculos';
+const baseUrl = 'http://localhost:8090/veiculos';
 
 
 const saveCar = (car) => {

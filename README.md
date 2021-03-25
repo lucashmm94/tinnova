@@ -22,7 +22,16 @@ git clone https://github.com/lucashmm94/tinnova
 
 ### Construção
 Para rodar o front end, basta entrar na pasta raiz da aplicação e rodar ou o yarn ou npm para baixar as dependencias do projeto
-Para rodar o back end, basta entra no eclipse ou sts, importar o projeto, esperar o build e rodar a aplicação em debug
+Para rodar o back end, basta entra no eclipse ou sts, importar o projeto, esperar o build e rodar com spring devtools(plugin do eclipse) a aplicação em debug
+Para rodar o banco basta, criar uma instancia mysql e passar esses parametros no application.propeties:
+
+spring.jpa.hibernate.ddl-auto=update
+spring.datasource.url=jdbc:mysql://localhost:3306/desafio
+spring.datasource.username=root
+spring.datasource.password=12345
+
+server.port=8090
+
 
 ```shell
 mvn clean install
@@ -32,17 +41,9 @@ O comando irá baixar todas as dependências do projeto e criar um diretório *t
 Além disso, serão executados os testes unitários, e se algum falhar, o Maven exibirá essa informação no console.
 
 
-## Testes
-
-Para rodar os testes, utilize o comando abaixo:
 
 ```
-mvn test
-```
 
 
-## Links
-Necessário rodar o sistema:
-- [API documentada swagger]
 
 

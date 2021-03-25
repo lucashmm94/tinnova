@@ -15,7 +15,7 @@ const Register = () => {
   const [marca, setMarca] = useState('');
   const [descricao, setDescricao] = useState('');
   const [isVendido, setIsVendido] = useState(false);
-  
+
   useEffect(() => {
     M.AutoInit();
   }, []);
@@ -39,7 +39,7 @@ const Register = () => {
   }
 
   const handleSave = async () => {
-   await api.saveCar(
+    await api.saveCar(
       {
         nome,
         marca,
@@ -52,8 +52,8 @@ const Register = () => {
     returnSearch();
   }
 
-  const showMessageCreated = () =>{
-    M.toast({html: 'Veículo salvo com sucesso!', classes: 'rounded'});
+  const showMessageCreated = () => {
+    M.toast({ html: 'Veículo salvo com sucesso!', classes: 'rounded' });
   }
   const returnSearch = () => {
     history.push('/pesquisar');
@@ -77,14 +77,10 @@ const Register = () => {
         </div>
         <div className="input-field col s4">
           <select onChange={handleChangeMarca} id="marca" >
-            <option value="Audi" defaultValue>Audi</option>
-            <option value="BMW">BMW 2</option>
-            <option value="Chevrolet">Chevrolet</option>
+            <option value="Chevrolet" defaultValue>Chevrolet</option>
             <option value="Fiat">Fiat</option>
             <option value="Ford">Ford</option>
             <option value="Honda">Honda</option>
-            <option value="Renault">Renault</option>
-            <option value="Toyota">Toyota</option>
             <option value="Volkswagen">Volkswagen</option>
           </select>
           <label htmlFor="marca" className="active">
