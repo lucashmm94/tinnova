@@ -10,17 +10,15 @@ const Register = () => {
 
   const history = useHistory();
 
-  useEffect(() => {
-    M.AutoInit();
-  }, []);
-
   const [nome, setNome] = useState('');
   const [ano, setAno] = useState(2022);
   const [marca, setMarca] = useState('');
   const [descricao, setDescricao] = useState('');
   const [isVendido, setIsVendido] = useState(false);
-
-
+  
+  useEffect(() => {
+    M.AutoInit();
+  }, []);
 
 
   const handleChangeNome = ({ target }) => {
@@ -40,7 +38,7 @@ const Register = () => {
 
   }
 
-  const handleSave = () => {
+  const handleSave =  () => {
     api.saveCar(
       {
         nome,
@@ -50,8 +48,16 @@ const Register = () => {
         isVendido,
       }
     )
+    showMessageCreated();
+    returnSearch();
   }
 
+  const showMessageCreated = () =>{
+    M.toast({html: 'Veículo salvo com sucesso!', classes: 'rounded'});
+  }
+  const returnSearch = () => {
+    history.push('/pesquisar');
+  }
 
   return (
     <>
@@ -122,7 +128,7 @@ const Register = () => {
         </div>
         <div className="input-field col s12 center ">
           <a className="waves-effect waves-light btn" onClick={handleSave} >Salvar Veículo</a>
-          <a className="waves-effect red btn" onClick={() => { history.push('/pesquisar') }}>Cancelar</a>
+          <a className="waves-effect red btn" onClick={returnSearch}>Cancelar</a>
         </div>
 
       </div>

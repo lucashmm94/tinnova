@@ -9,8 +9,9 @@ export default function Search() {
   const [dataSearch, setDataSearch] = useState([]);
 
   const listCars = async () => {
-    const response = await api.getLsCars();
-    setDataSearch(response);
+    api.findAll().then((response)=>{
+      setDataSearch(response)
+    }).catch(erro=>console.error(erro))
   }
 
   useEffect(() => {

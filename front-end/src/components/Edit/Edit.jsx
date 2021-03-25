@@ -1,70 +1,81 @@
 import React, { useEffect, useState } from 'react'
 import * as api from '../../api/api-service'
-import {useHistory} from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import M from "materialize-css";
 
 const Edit = ({ match }) => {
 
-    const { params: id } = match;
-    const history = useHistory();
+  const { params: id } = match;
+  const history = useHistory();
 
-    const [nome, setNome] = useState('');
-    const [ano, setAno] = useState(2022);
-    const [marca, setMarca] = useState('');
-    const [descricao, setDescricao] = useState('');
-    const [isVendido, setIsVendido] = useState(false);
+  const [nome, setNome] = useState('');
+  const [ano, setAno] = useState(2022);
+  const [marca, setMarca] = useState('');
+  const [descricao, setDescricao] = useState('');
+  const [isVendido, setIsVendido] = useState('');
 
-    useEffect(() => {
-        findById(id);
-        M.AutoInit();
-    }, [])
+  useEffect(() => {
+    findById(id);
 
-    const findById = async () => {
-        const veiculoBanco = await api.findById(id);
-        iniciarEstadoComponente(veiculoBanco);
+  }, [])
 
-    }
+  const findById = async () => {
+    api.findById(id).then(response => {
+      iniciarEstadoComponente(response);
+    }).catch(erro => console.error(erro))
 
-    const iniciarEstadoComponente = ({ nome, marca, ano, descricao, isVendido, }) => {
-        setNome(nome);
-        setMarca(marca);
-        setAno(ano)
-        setDescricao(descricao)
-        setIsVendido(isVendido);
-    }
+  }
 
-    const handleChangeNome = ({ target }) => {
-        setNome(target.value);
+  const iniciarEstadoComponente = ({ nome, marca, ano, descricao, isVendido, }) => {
+    setNome(nome);
+    setMarca(marca);
+    setAno(ano)
+    setDescricao(descricao)
+    setIsVendido(isVendido);
+    M.AutoInit();
+  }
+
+  const handleChangeNome = ({ target }) => {
+    setNome(target.value);
+  }
+  const handleChangeMarca = ({ target }) => {
+    setMarca(target.value);
+  };
+  const handleChangeAno = ({ target }) => {
+    setAno(target.value);
+  };
+  const handleChangeDescricao = ({ target }) => {
+    setDescricao(target.value);
+  };
+  const handleChangeVendido = ({ target }) => {
+    target.value === 'true' ? setIsVendido(target.value) : setIsVendido(false)
+
+  }
+
+  const handleUpdate = async () => {
+    await api.update(
+      id,
+      {
+        nome,
+        marca,
+        ano,
+        descricao,
+        isVendido,
       }
-      const handleChangeMarca = ({ target }) => {
-        setMarca(target.value);
-      };
-      const handleChangeAno = ({ target }) => {
-        setAno(target.value);
-      };
-      const handleChangeDescricao = ({ target }) => {
-        setDescricao(target.value);
-      };
-      const handleChangeVendido = ({ target }) => {
-        target.value === 'true' ? setIsVendido(target.value) : setIsVendido(false)
-    
-      }
+    )
+    showMessageCreated();
+    returnSearch();
+  }
 
-      const handleSave = () => {
-        api.saveCar(
-          {
-            nome,
-            marca,
-            ano,
-            descricao,
-            isVendido,
-          }
-        )
-      }
+  const showMessageCreated = () => {
+    M.toast({ html: 'Informações alteradas com sucesso!', classes: 'rounded' });
+  }
+  const returnSearch = () => {
+    history.push('/pesquisar');
+  }
 
-
-    return (
-        <>
+  return (
+    <>
       <h2 className="center">Editar</h2>
       <div className="row">
         <div className="input-field col s4">
@@ -80,17 +91,20 @@ const Edit = ({ match }) => {
           </label>
         </div>
         <div className="input-field col s4">
-          <select onChange={handleChangeMarca} id="marca" >
-            <option value="Audi" defaultValue>Audi</option>
-            <option value="BMW">BMW 2</option>
-            <option value="Chevrolet">Chevrolet</option>
-            <option value="Fiat">Fiat</option>
-            <option value="Ford">Ford</option>
-            <option value="Honda">Honda</option>
-            <option value="Renault">Renault</option>
-            <option value="Toyota">Toyota</option>
-            <option value="Volkswagen">Volkswagen</option>
-          </select>
+          {marca &&
+            <select onChange={handleChangeMarca} id="marca" >
+              <option value={marca}>{marca}</option>
+              <option value="Audi" >Audi</option>
+              <option value="BMW">BMW 2</option>
+              <option value="Chevrolet">Chevrolet</option>
+              <option value="Fiat">Fiat</option>
+              <option value="Ford">Ford</option>
+              <option value="Honda">Honda</option>
+              <option value="Renault">Renault</option>
+              <option value="Toyota">Toyota</option>
+              <option value="Volkswagen">Volkswagen</option>
+            </select>
+          }
           <label htmlFor="marca" className="active">
             Marca
           </label>
@@ -131,8 +145,8 @@ const Edit = ({ match }) => {
           </label>
         </div>
         <div className="input-field col s12 center ">
-          <a className="waves-effect waves-light btn" onClick={handleSave} >Atualizar Veículo</a>
-          <a className="waves-effect red btn" onClick={() => { history.push('/pesquisar') }}>Cancelar</a>
+          <a className="waves-effect waves-light btn" onClick={handleUpdate} >Atualizar Veículo</a>
+          <a className="waves-effect red btn" onClick={returnSearch}>Cancelar</a>
         </div>
 
       </div>
@@ -141,7 +155,7 @@ const Edit = ({ match }) => {
 
     </>
 
-    )
+  )
 }
 
 export default Edit

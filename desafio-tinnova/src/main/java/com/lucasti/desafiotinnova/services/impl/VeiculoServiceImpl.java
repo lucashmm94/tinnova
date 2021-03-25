@@ -35,8 +35,12 @@ public class VeiculoServiceImpl implements VeiculoService{
 	@Override
 	public Veiculo update(Veiculo veiculo, Long id) {
 		Veiculo veiculoBanco = findById(id);
-		veiculoBanco.setId(id);
-		return save(veiculoBanco);
+		veiculoBanco.setNome(veiculo.getNome());
+		veiculoBanco.setAno(veiculo.getAno());
+		veiculoBanco.setDescricao(veiculo.getDescricao());
+		veiculoBanco.setIsVendido(veiculo.getIsVendido());
+		veiculo.setAtualizado(LocalDateTime.now());
+		return repository.saveAndFlush(veiculoBanco);
 		
 	}
 
