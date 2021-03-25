@@ -50,8 +50,6 @@ public class Veiculo implements Serializable {
 		this.marca = marca;
 		this.ano = ano;
 		this.isVendido = isVendido;
-		this.criado = LocalDateTime.now();
-		this.atualizado = LocalDateTime.now();
 	}
 
 

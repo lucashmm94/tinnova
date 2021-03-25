@@ -1,5 +1,7 @@
 import axios from 'axios';
 
+// axios.defaults.headers['Content-Type'] ='application/json;charset=utf-8';
+// axios.defaults.headers['Access-Control-Allow-Origin'] = '*';
 const baseUrl = 'http://localhost:8080/veiculos';
 
 
@@ -15,13 +17,13 @@ const getLsCars = async () => {
   return response.data;
 }
 
-const deleteById = async (idVeiculo) => {
-  const response = await axios.delete(`${baseUrl}`, { params: idVeiculo });
+const deleteById = async ({id}) => {
+  const response = await axios.delete(`${baseUrl}/${id}`);
   return response.data;
 }
 
-const findById = async(idVeiculo) =>{
-  const response = await axios.get(`${baseUrl}`, { params: idVeiculo });
+const findById = async({id}) =>{
+  const response = await axios.get(`${baseUrl}/${id}`);
   return response.data;
 }
 

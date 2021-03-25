@@ -1,8 +1,19 @@
-import React, { useState } from 'react';
-import './index.css';
+import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
+
 import * as api from '../../api/api-service'
 
-export default function Register() {
+import M from "materialize-css";
+
+
+const Register = () => {
+
+  const history = useHistory();
+
+  useEffect(() => {
+    M.AutoInit();
+  }, []);
+
   const [nome, setNome] = useState('');
   const [ano, setAno] = useState(2022);
   const [marca, setMarca] = useState('');
@@ -10,7 +21,7 @@ export default function Register() {
   const [isVendido, setIsVendido] = useState(false);
 
 
- 
+
 
   const handleChangeNome = ({ target }) => {
     setNome(target.value);
@@ -25,11 +36,11 @@ export default function Register() {
     setDescricao(target.value);
   };
   const handleChangeVendido = ({ target }) => {
-    target.value === 'true'? setIsVendido(target.value) : setIsVendido(false)
-    
+    target.value === 'true' ? setIsVendido(target.value) : setIsVendido(false)
+
   }
 
-  const handleSave = () =>{
+  const handleSave = () => {
     api.saveCar(
       {
         nome,
@@ -59,7 +70,7 @@ export default function Register() {
           </label>
         </div>
         <div className="input-field col s4">
-          <select onChange={handleChangeMarca} className="browser-default" id="marca" >
+          <select onChange={handleChangeMarca} id="marca" >
             <option value="Audi" defaultValue>Audi</option>
             <option value="BMW">BMW 2</option>
             <option value="Chevrolet">Chevrolet</option>
@@ -101,7 +112,7 @@ export default function Register() {
           </label>
         </div>
         <div className="input-field col s4">
-          <select onChange={handleChangeVendido} className="browser-default" id="isVendido" >
+          <select onChange={handleChangeVendido} id="isVendido" >
             <option value="false" defaultValue>Não</option>
             <option value="true">Sim</option>
           </select>
@@ -109,9 +120,9 @@ export default function Register() {
             Vendido
           </label>
         </div>
-        <div className="input-field col s12 center">
-            <a className="waves-effect waves-light btn" onClick={handleSave} >Salvar Veículo</a>
-            <a className="waves-effect red btn ">Cancelar</a>
+        <div className="input-field col s12 center ">
+          <a className="waves-effect waves-light btn" onClick={handleSave} >Salvar Veículo</a>
+          <a className="waves-effect red btn" onClick={() => { history.push('/pesquisar') }}>Cancelar</a>
         </div>
 
       </div>
@@ -121,3 +132,4 @@ export default function Register() {
     </>
   )
 }
+export default Register

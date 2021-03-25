@@ -1,18 +1,20 @@
 import React from 'react'
-import {BrowserRouter as Router,Route} from "react-router-dom";
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
-import Search from '../components/search/Search'
-import Register from '../components/register/Register'
-import Edit from '../components/Edit/Edit'
+import Search from '../components/search/Search';
+import Header from '../components/header/Header';
+import Edit from '../components/edit/Edit';
+import Register from '../components/register/Register';
 
-export default function Routes () {
-    return(
-        <Router>
-            <Route exact path='/'  component={Search} />
+const Routes = () => (
+    <BrowserRouter>
+       <Header />
+        <Switch>
             <Route exact path='/pesquisar' component={Search} />
-            <Route exact path='/cadastrar'  component={Register} />
-            <Route exact path='/editar/:id'  component={Edit} />
-        </Router>
-    )
-    
-}
+            <Route exact path='/cadastrar' component={Register} />
+            <Route exact path='/editar/:id' component={Edit} />
+        </Switch>
+    </BrowserRouter>
+);
+
+export default Routes;

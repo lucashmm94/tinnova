@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import * as api from '../../api/api-service';
-import {useHistory} from  'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 
 export default function Search() {
@@ -8,27 +8,27 @@ export default function Search() {
 
   const [dataSearch, setDataSearch] = useState([]);
 
+  const listCars = async () => {
+    const response = await api.getLsCars();
+    setDataSearch(response);
+  }
+
   useEffect(() => {
-    const getData = async () => {
-      let dados = await api.getLsCars();
-      setDataSearch(dados);
-    };
-    getData();
-  }, []);
+    listCars();
+  }, [])
 
 
   const handleDelete = (id) => {
     api.deleteById(id);
-    // api.getLsCars();
   }
 
   const handleEdit = (id) => {
-    history.push(`/edit/${id}`)
+    history.push(`/editar/${id}`);
   }
 
 
   return (
-    <div>
+    <div className="container">
       <h2 className="center">Pesquisar</h2>
       <div className="row">
         <table className="responsive-table">
@@ -52,8 +52,8 @@ export default function Search() {
                   <td>{item.descricao}</td>
                   <td>{item.ano}</td>
                   <td>
-                    {/* <button className="smallwaves-effect red btn" onClick={handleDelete(item.id)} ><i className="fa fa-minus-circle"></i></button> */}
-                    {/* <button className="smallwaves-effect yellow-light btn" onClick={handleEdit(item.id)} ><i className="fa fa-edit"></i></button> */}
+                    <button className="smallwaves-effect red btn" onClick={() => handleDelete(item.id)} ><i className="fa fa-minus-circle"></i></button>
+                    <button className="smallwaves-effect yellow-light btn" onClick={() => handleEdit(item.id)} ><i className="fa fa-edit"></i></button>
                   </td>
                 </tr>
               )
