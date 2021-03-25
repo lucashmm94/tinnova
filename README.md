@@ -25,10 +25,10 @@ Para rodar o front end, basta entrar na pasta raiz da aplicação e rodar ou o y
 Para rodar o back end, basta entra no eclipse ou sts, importar o projeto, esperar o build e rodar com spring devtools(plugin do eclipse) a aplicação em debug
 Para rodar o banco basta, criar uma instancia mysql e passar esses parametros no application.propeties:<br>
 
-spring.jpa.hibernate.ddl-auto=update
-spring.datasource.url=jdbc:mysql://localhost:3306/desafio
-spring.datasource.username=root
-spring.datasource.password=12345
+spring.jpa.hibernate.ddl-auto=update<br>
+spring.datasource.url=jdbc:mysql://localhost:3306/desafio<br>
+spring.datasource.username=root<br>
+spring.datasource.password=12345<br>
 
 server.port=8090
 
